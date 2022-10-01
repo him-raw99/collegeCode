@@ -6,9 +6,7 @@ struct node
     struct node *next;
 };
 
-
 struct node *head = NULL;
-
 
 void insertatbegining()
 {
@@ -36,15 +34,39 @@ void insertatbegining()
     printf("-----------------------------------------------------------------------------\n");
 }
 
+void insertatend()
+{
+    if (head != NULL)
+    {
+        printf("-----------------------------------------------------------------------------\n");
 
+        struct node *temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
 
+        // creating a node
+        struct node *Node = (struct node *)malloc(sizeof(struct node));
+        printf("enter the data :");
+        scanf("%d", &Node->data);
+        Node->next = NULL;
 
+        temp->next = Node;
+        printf("sucessfully inserted %d at the ending of your ll\n", temp->next->data);
+        printf("-----------------------------------------------------------------------------\n");
+    }
+    else
+    {
+        insertatbegining();
+    }
+}
 
 void traverse()
 {
     printf("-----------------------------------------------------------------------------\n");
     struct node *temp = head;
-    printf("your linked list : {");
+    printf("your linked list : { ");
     while (temp != NULL)
     {
         printf("%d ", temp->data);
@@ -53,10 +75,6 @@ void traverse()
     printf("}\n");
     printf("-----------------------------------------------------------------------------\n");
 }
-
-
-
-
 
 int main()
 {
@@ -80,7 +98,7 @@ int main()
             insertatbegining();
             break;
         case 2:
-            printf("han bhai kara liya inser2");
+            insertatend();
             break;
         case 3:
             printf("han bhai kara liya inse3t");
