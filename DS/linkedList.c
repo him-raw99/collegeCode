@@ -6,7 +6,6 @@ struct node
     struct node *next;
 };
 
-// hi
 
 struct node *head = NULL;
 
