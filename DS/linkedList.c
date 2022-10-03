@@ -7,6 +7,7 @@ struct node
 };
 
 struct node *head = NULL;
+int size = 0;
 
 void insertatbegining()
 {
@@ -20,6 +21,7 @@ void insertatbegining()
         Node->next = NULL;
         head = Node;
         printf("element %d sucessfully inserted \n", head->data);
+        size++;
     }
     else
     {
@@ -29,6 +31,7 @@ void insertatbegining()
         Node->next = head;
         head = Node;
         printf("sucessfully inserted %d at the begining of your ll\n", head->data);
+        size++;
     }
 
     printf("-----------------------------------------------------------------------------\n");
@@ -54,7 +57,45 @@ void insertatend()
 
         temp->next = Node;
         printf("sucessfully inserted %d at the ending of your ll\n", temp->next->data);
+        size++;
         printf("-----------------------------------------------------------------------------\n");
+    }
+    else
+    {
+        insertatbegining();
+    }
+}
+
+void insertatlocation()
+{
+    if (head != NULL)
+    {
+        printf("-----------------------------------------------------------------------------\n");
+        int n;
+        printf("enter the index where you want to perform the insertion :");
+        scanf("%d", &n);
+        if (n <= size)
+        {
+            struct node *temp = head;
+            for (int i = 0; i < n-1; i++)
+            {
+                temp = temp->next;
+            }
+
+            // creating a node
+            struct node *Node = (struct node *)malloc(sizeof(struct node));
+            printf("enter the data :");
+            scanf("%d", &Node->data);
+            Node->next=temp->next;
+            temp->next=Node;
+            printf("sucessfully inserted %d at the %d index of your ll\n", temp->next->data,n);
+        }
+        else
+        {
+            printf("Index out of bound\n");
+        }
+        printf("-----------------------------------------------------------------------------\n");
+
     }
     else
     {
@@ -66,7 +107,7 @@ void traverse()
 {
     printf("-----------------------------------------------------------------------------\n");
     struct node *temp = head;
-    printf("your linked list : { ");
+    printf("%d elements your linked list are : { ", size);
     while (temp != NULL)
     {
         printf("%d ", temp->data);
@@ -101,7 +142,7 @@ int main()
             insertatend();
             break;
         case 3:
-            printf("han bhai kara liya inse3t");
+            insertatlocation();
             break;
         case 4:
             printf("han bhai kara liya ins4rt");
