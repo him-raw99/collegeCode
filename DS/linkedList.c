@@ -103,6 +103,24 @@ void insertatlocation()
     }
 }
 
+
+void deleteatbegining(){
+    if (head!=NULL){
+    printf("-----------------------------------------------------------------------------\n");
+    printf("First element '%d' deleted \n",head->data);
+    printf("-----------------------------------------------------------------------------\n");
+        struct node *temp = head;
+        head=head->next;
+        free(temp);
+    }
+    else{
+        printf("-----------------------------------------------------------------------------\n");
+        printf("LL already empty \n");
+        printf("-----------------------------------------------------------------------------\n");
+    }
+}
+
+
 void traverse()
 {
     printf("-----------------------------------------------------------------------------\n");
@@ -145,7 +163,7 @@ int main()
             insertatlocation();
             break;
         case 4:
-            printf("han bhai kara liya ins4rt");
+            deleteatbegining();
             break;
         case 5:
             printf("han bhai kara liya in5ert");
@@ -161,6 +179,8 @@ int main()
             break;
         default:
             printf("okay byeeeee!!!");
+            a=10;
+            break;
         }
     }
 
