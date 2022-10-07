@@ -5,14 +5,14 @@ struct node
     int data;
     struct node *next;
 };
-
+ 
 struct node *head = NULL;
 int size = 0;
-
+ 
 void insertatbegining()
 {
     printf("-----------------------------------------------------------------------------\n");
-
+ 
     if (head == NULL)
     {
         struct node *Node = (struct node *)malloc(sizeof(struct node));
@@ -33,28 +33,28 @@ void insertatbegining()
         printf("sucessfully inserted %d at the begining of your ll\n", head->data);
         size++;
     }
-
+ 
     printf("-----------------------------------------------------------------------------\n");
 }
-
+ 
 void insertatend()
 {
     if (head != NULL)
     {
         printf("-----------------------------------------------------------------------------\n");
-
+ 
         struct node *temp = head;
         while (temp->next != NULL)
         {
             temp = temp->next;
         }
-
+ 
         // creating a node
         struct node *Node = (struct node *)malloc(sizeof(struct node));
         printf("enter the data :");
         scanf("%d", &Node->data);
         Node->next = NULL;
-
+ 
         temp->next = Node;
         printf("sucessfully inserted %d at the ending of your ll\n", temp->next->data);
         size++;
@@ -65,7 +65,7 @@ void insertatend()
         insertatbegining();
     }
 }
-
+ 
 void insertatlocation()
 {
     if (head != NULL)
@@ -74,14 +74,14 @@ void insertatlocation()
         int n;
         printf("enter the index where you want to perform the insertion :");
         scanf("%d", &n);
-        if (n <= size)
+        if ((n <= size)&&(n!=0))
         {
             struct node *temp = head;
             for (int i = 0; i < n-1; i++)
             {
                 temp = temp->next;
             }
-
+ 
             // creating a node
             struct node *Node = (struct node *)malloc(sizeof(struct node));
             printf("enter the data :");
@@ -89,21 +89,25 @@ void insertatlocation()
             Node->next=temp->next;
             temp->next=Node;
             printf("sucessfully inserted %d at the %d index of your ll\n", temp->next->data,n);
+            size++;
+        }
+        else if(n==0){
+            insertatbegining();
         }
         else
         {
             printf("Index out of bound\n");
         }
         printf("-----------------------------------------------------------------------------\n");
-
+ 
     }
     else
     {
         insertatbegining();
     }
 }
-
-
+ 
+ 
 void deleteatbegining(){
     if (head!=NULL){
     printf("-----------------------------------------------------------------------------\n");
@@ -112,6 +116,7 @@ void deleteatbegining(){
         struct node *temp = head;
         head=head->next;
         free(temp);
+        size--;
     }
     else{
         printf("-----------------------------------------------------------------------------\n");
@@ -119,8 +124,97 @@ void deleteatbegining(){
         printf("-----------------------------------------------------------------------------\n");
     }
 }
-
-
+ 
+ 
+void deleteatend(){
+    if (head!=NULL){
+        struct node *temp = head;
+        if(head->next==NULL){
+            deleteatbegining();
+        }
+        else{
+            while (temp->next->next!=NULL){
+                temp=temp->next;
+            }
+            printf("-----------------------------------------------------------------------------\n");
+            printf("Last element '%d' deleted \n",temp->next->data);
+            printf("-----------------------------------------------------------------------------\n");
+            free(temp->next);
+            temp->next=NULL;
+            size--;
+        }
+    }
+    else{
+        printf("-----------------------------------------------------------------------------\n");
+        printf("LL already empty \n");
+        printf("-----------------------------------------------------------------------------\n");
+    }
+}
+ 
+ 
+void deleteatlocation(){
+    if (head!=NULL){
+        struct node *temp = head;
+        printf("-----------------------------------------------------------------------------\n");
+        int n;
+        printf("enter the index where you want to perform the deletion :");
+        scanf("%d", &n);
+        if (n <= size)
+        {
+            struct node *temp = head;
+            for (int i = 0; i < n-1; i++)
+            {
+                temp = temp->next;
+            }
+            printf("sucessfully deleted %d at the %d index of your ll\n",temp->next->data,n);
+            printf("-----------------------------------------------------------------------------\n");
+            struct node *ptr = temp->next;
+            temp->next=ptr->next;
+            free(ptr);
+            size--;
+        }
+        else
+        {
+            printf("Index out of bound\n");
+        }
+    }
+    else{
+        printf("-----------------------------------------------------------------------------\n");
+        printf("LL already empty \n");
+        printf("-----------------------------------------------------------------------------\n");
+    }
+}
+ 
+void search(){
+    if (head!=NULL){
+    printf("-----------------------------------------------------------------------------\n");
+    printf("Enter the element you want to search :");
+    int key,flag=0,index=0;
+    scanf("%d",&key);
+    struct node *temp = head;
+    while (temp != NULL)
+    {
+        if(temp->data==key){
+            printf("Element %d found at %d index\n",key,index);
+            flag=1;
+            break;
+        }
+        index++;
+        temp = temp->next;
+    }
+    if (flag==0){
+        printf("Element not found\n");
+    }
+    printf("-----------------------------------------------------------------------------\n");
+        size--;
+    }
+    else{
+        printf("-----------------------------------------------------------------------------\n");
+        printf("LL is empty \n");
+        printf("-----------------------------------------------------------------------------\n");
+    }
+}
+ 
 void traverse()
 {
     printf("-----------------------------------------------------------------------------\n");
@@ -134,7 +228,7 @@ void traverse()
     printf("}\n");
     printf("-----------------------------------------------------------------------------\n");
 }
-
+ 
 int main()
 {
     int a = 0;
@@ -166,13 +260,13 @@ int main()
             deleteatbegining();
             break;
         case 5:
-            printf("han bhai kara liya in5ert");
+            deleteatend();
             break;
         case 6:
-            printf("han bhai kara liya i6sert");
+            deleteatlocation();
             break;
         case 7:
-            printf("han bhai kara liya7 nsert");
+            search();
             break;
         case 8:
             traverse();
@@ -183,6 +277,6 @@ int main()
             break;
         }
     }
-
+ 
     return 0;
 }
