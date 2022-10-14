@@ -159,7 +159,7 @@ void deleteatlocation(){
         int n;
         printf("enter the index where you want to perform the deletion :");
         scanf("%d", &n);
-        if (n <= size)
+        if (n < size)
         {
             struct node *temp = head;
             for (int i = 0; i < n-1; i++)
@@ -176,6 +176,7 @@ void deleteatlocation(){
         else
         {
             printf("Index out of bound\n");
+            printf("-----------------------------------------------------------------------------\n");
         }
     }
     else{
@@ -229,10 +230,34 @@ void traverse()
     printf("-----------------------------------------------------------------------------\n");
 }
  
+ 
+void reverseLinkedList(){
+    printf("-----------------------------------------------------------------------------\n");
+    struct node * newhead = NULL;
+    struct node * temp = head;
+    while (temp!=NULL){
+        struct node *Node = (struct node *)malloc(sizeof(struct node));
+        Node->data=temp->data;
+        if (newhead==NULL){
+            Node->next=NULL;
+            newhead=Node;
+        }
+        else{
+            Node->next=newhead;
+            newhead=Node;
+        }
+        temp=temp->next;
+    }
+    head=newhead;
+    printf("your linked list has been reversed\n");
+    printf("-----------------------------------------------------------------------------\n");
+}
+ 
+ 
 int main()
 {
     int a = 0;
-    while (a < 9)
+    while (a < 10)
     {
         printf("1> Insert at begining\n");
         printf("2> Insert at End\n");
@@ -242,7 +267,8 @@ int main()
         printf("6> Delete at a location\n");
         printf("7> Search\n");
         printf("8> Traverse\n");
-        printf("9> Quit\n");
+        printf("9> reverse the linked list\n");
+        printf("10> Quit\n");
         printf("enter the your choice:");
         scanf("%d", &a);
         switch (a)
@@ -271,9 +297,12 @@ int main()
         case 8:
             traverse();
             break;
+        case 9:
+            reverseLinkedList();
+            break;
         default:
             printf("okay byeeeee!!!");
-            a=10;
+            a=11;
             break;
         }
     }
