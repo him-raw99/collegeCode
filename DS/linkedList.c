@@ -12,28 +12,13 @@ int size = 0;
 void insertatbegining()
 {
     printf("-----------------------------------------------------------------------------\n");
- 
-    if (head == NULL)
-    {
-        struct node *Node = (struct node *)malloc(sizeof(struct node));
-        printf("enter the data :");
-        scanf("%d", &Node->data);
-        Node->next = NULL;
-        head = Node;
-        printf("element %d sucessfully inserted \n", head->data);
-        size++;
-    }
-    else
-    {
-        struct node *Node = (struct node *)malloc(sizeof(struct node));
-        printf("enter the element :");
-        scanf("%d", &Node->data);
-        Node->next = head;
-        head = Node;
-        printf("sucessfully inserted %d at the begining of your ll\n", head->data);
-        size++;
-    }
- 
+    struct node *Node = (struct node *)malloc(sizeof(struct node));
+    printf("enter the element :");
+    scanf("%d", &Node->data);
+    Node->next = head;
+    head = Node;
+    printf("sucessfully inserted %d at the begining of your ll\n", head->data);
+    size++;
     printf("-----------------------------------------------------------------------------\n");
 }
  
