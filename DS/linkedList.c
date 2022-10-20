@@ -192,7 +192,6 @@ void search(){
         printf("Element not found\n");
     }
     printf("-----------------------------------------------------------------------------\n");
-        size--;
     }
     else{
         printf("-----------------------------------------------------------------------------\n");
@@ -252,8 +251,8 @@ int main()
         printf("6> Delete at a location\n");
         printf("7> Search\n");
         printf("8> Traverse\n");
-        printf("9> reverse the linked list\n");
-        printf("10> Quit\n");
+        printf("9> Reverse the linked list\n");
+        printf("0> Exit\n");
         printf("enter the your choice:");
         scanf("%d", &a);
         switch (a)
@@ -286,11 +285,10 @@ int main()
             reverseLinkedList();
             break;
         default:
-            printf("okay byeeeee!!!");
+            printf("exiting.....");
             a=11;
             break;
         }
     }
- 
     return 0;
 }
