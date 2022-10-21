@@ -1,0 +1,114 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+ 
+struct node *head = NULL;
+int size = 0;
+ 
+ 
+void insertatend()
+{
+    if (head != NULL)
+    {
+        printf("-----------------------------------------------------------------------------\n");
+ 
+        struct node *temp = head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+ 
+        // creating a node
+        struct node *Node = (struct node *)malloc(sizeof(struct node));
+        printf("enter the data :");
+        scanf("%d", &Node->data);
+        Node->next = NULL;
+ 
+        temp->next = Node;
+        printf("sucessfully inserted %d at the ending of your ll\n", temp->next->data);
+        size++;
+        printf("-----------------------------------------------------------------------------\n");
+    }
+    else
+    {
+        printf("-----------------------------------------------------------------------------\n");
+        // creating a node
+        struct node *Node = (struct node *)malloc(sizeof(struct node));
+        printf("enter the data :");
+        scanf("%d", &Node->data);
+        Node->next = NULL;
+        head=Node;
+        printf("sucessfully inserted %d at the ending of your ll\n", Node->data);
+        size++;
+        printf("-----------------------------------------------------------------------------\n");
+    }
+}
+ 
+void deleteatbegining(){
+    if (head!=NULL){
+    printf("-----------------------------------------------------------------------------\n");
+    printf("First element '%d' deleted \n",head->data);
+    printf("-----------------------------------------------------------------------------\n");
+        struct node *temp = head;
+        head=head->next;
+        free(temp);
+        size--;
+    }
+    else{
+        printf("-----------------------------------------------------------------------------\n");
+        printf("LL already empty \n");
+        printf("-----------------------------------------------------------------------------\n");
+    }
+}
+ 
+ 
+void traverse()
+{
+    printf("-----------------------------------------------------------------------------\n");
+    struct node *temp = head;
+    printf("%d elements your linked list are : { ", size);
+    while (temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("}\n");
+    printf("-----------------------------------------------------------------------------\n");
+}
+ 
+ 
+ 
+int main()
+{
+    int a = 0;
+    while (a < 10)
+    {
+        printf("1> ENQUEUE\n");
+        printf("2> DEQUEUE\n");
+        printf("3> Traverse\n");
+        printf("0> Exit\n");
+        printf("enter the your choice:");
+        scanf("%d", &a);
+        switch (a)
+        {
+        case 1:
+            insertatend();
+            break;
+        case 2:
+            deleteatbegining();
+            break;
+        case 3:
+            traverse();
+            break;
+        default:
+            printf("exiting.....");
+            a=11;
+            break;
+        }
+    }
+    return 0;
+}
