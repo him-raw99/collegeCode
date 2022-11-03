@@ -9,7 +9,7 @@ struct node
 struct node *head = NULL;
 int size = 0;
  
-void PUSH()
+void push()
 {
     printf("-----------------------------------------------------------------------------\n");
     struct node *Node = (struct node *)malloc(sizeof(struct node));
@@ -22,7 +22,7 @@ void PUSH()
     printf("-----------------------------------------------------------------------------\n");
 }
  
-void POP(){
+void pop(){
     if (head!=NULL){
     printf("-----------------------------------------------------------------------------\n");
     printf("First element '%d' deleted \n",head->data);
@@ -37,6 +37,12 @@ void POP(){
         printf("LL already empty \n");
         printf("-----------------------------------------------------------------------------\n");
     }
+}
+
+void peek(){
+    printf("-----------------------------------------------------------------------------\n");
+    printf("First element - '%d' \n",head->data);
+    printf("-----------------------------------------------------------------------------\n");
 }
  
 void traverse()
@@ -56,28 +62,32 @@ void traverse()
 int main()
 {
     int a = 0;
-    while (a < 10)
+    while (a < 5)
     {
-        printf("1> PUSH \n");
-        printf("2> POP\n");
-        printf("3> TRAVERSE\n");
-        printf("0> Exit\n");
+        printf("1> push \n");
+        printf("2> pop\n");
+        printf("3> traverse\n");
+        printf("4> peek\n");
+        printf("5> Exit\n");
         printf("enter the your choice:");
         scanf("%d", &a);
         switch (a)
         {
         case 1:
-            PUSH();
+            push();
             break;
         case 2:
-            POP();
+            pop();
             break;
         case 3:
             traverse();
             break;
+        case 4:
+            peek();
+            break;
         default:
             printf("exiting.....");
-            a=11;
+            a=5;
             break;
         }
     }
