@@ -17,7 +17,7 @@ void push()
     scanf("%d", &Node->data);
     Node->next = head;
     head = Node;
-    printf("sucessfully inserted %d at the begining of your ll\n", head->data);
+    printf("sucessfully pushed %d in the stack\n", head->data);
     size++;
     printf("-----------------------------------------------------------------------------\n");
 }
@@ -25,7 +25,7 @@ void push()
 void pop(){
     if (head!=NULL){
     printf("-----------------------------------------------------------------------------\n");
-    printf("First element '%d' deleted \n",head->data);
+    printf("Element '%d' popped from the stack \n",head->data);
     printf("-----------------------------------------------------------------------------\n");
         struct node *temp = head;
         head=head->next;
@@ -49,7 +49,7 @@ void traverse()
 {
     printf("-----------------------------------------------------------------------------\n");
     struct node *temp = head;
-    printf("%d elements your linked list are : { ", size);
+    printf("%d elements the stack are : { ", size);
     while (temp != NULL)
     {
         printf("%d ", temp->data);
