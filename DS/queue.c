@@ -10,7 +10,7 @@ struct node *head = NULL;
 int size = 0;
  
  
-void insertatend()
+void enqueue()
 {
     if (head != NULL)
     {
@@ -29,7 +29,7 @@ void insertatend()
         Node->next = NULL;
  
         temp->next = Node;
-        printf("sucessfully inserted %d at the ending of your ll\n", temp->next->data);
+        printf("sucessfully enqueued %d \n", temp->next->data);
         size++;
         printf("-----------------------------------------------------------------------------\n");
     }
@@ -42,16 +42,16 @@ void insertatend()
         scanf("%d", &Node->data);
         Node->next = NULL;
         head=Node;
-        printf("sucessfully inserted %d at the ending of your ll\n", Node->data);
+        printf("sucessfully enqueued %d \n", Node->data);
         size++;
         printf("-----------------------------------------------------------------------------\n");
     }
 }
  
-void deleteatbegining(){
+void dequeue(){
     if (head!=NULL){
     printf("-----------------------------------------------------------------------------\n");
-    printf("First element '%d' deleted \n",head->data);
+    printf("sucessfully dequeued %d \n",head->data);
     printf("-----------------------------------------------------------------------------\n");
         struct node *temp = head;
         head=head->next;
@@ -60,7 +60,7 @@ void deleteatbegining(){
     }
     else{
         printf("-----------------------------------------------------------------------------\n");
-        printf("LL already empty \n");
+        printf("Queue already empty \n");
         printf("-----------------------------------------------------------------------------\n");
     }
 }
@@ -70,7 +70,7 @@ void traverse()
 {
     printf("-----------------------------------------------------------------------------\n");
     struct node *temp = head;
-    printf("%d elements your linked list are : { ", size);
+    printf("%d elements in the Queue : { ", size);
     while (temp != NULL)
     {
         printf("%d ", temp->data);
@@ -85,28 +85,28 @@ void traverse()
 int main()
 {
     int a = 0;
-    while (a < 10)
+    while (a < 4)
     {
         printf("1> ENQUEUE\n");
         printf("2> DEQUEUE\n");
         printf("3> Traverse\n");
-        printf("0> Exit\n");
+        printf("4> Exit\n");
         printf("enter the your choice:");
         scanf("%d", &a);
         switch (a)
         {
         case 1:
-            insertatend();
+            enqueue();
             break;
         case 2:
-            deleteatbegining();
+            dequeue();
             break;
         case 3:
             traverse();
             break;
         default:
             printf("exiting.....");
-            a=11;
+            a=4;
             break;
         }
     }
