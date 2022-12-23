@@ -17,6 +17,10 @@ struct node * create(int data){
 }
  
 void traverse(struct node * parent, int order){
+    //@Desc::-
+    //order 1 - DLR (pre order)
+    //order 2 - LDR (in order)
+    //order 3 - LRD (post order)
     if(parent!=NULL){
         if(order==1)printf("%d ",parent->data);
         traverse(parent->left,order);
