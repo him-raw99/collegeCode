@@ -56,11 +56,15 @@ int main() {
     root->left=NULL;
     root->right=NULL;
     create(5);
-    create(5);
     create(10);
     create(15);
     create(25);
     create(35);
-    traverse(root,2);
+    create(30);
+    create(55);
+    create(105);
+    printf("Preorder traversal of the BST - ");traverse(root,1);printf("\n");
+    printf("Inorder traversal of the BST - ");traverse(root,2);printf("\n");
+    printf("Postorder traversal of the BST - ");traverse(root,3);printf("\n");
     return 0;
 }

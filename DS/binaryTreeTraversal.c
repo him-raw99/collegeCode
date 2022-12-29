@@ -38,6 +38,8 @@ int main() {
     root->right=create(2);
     root->left->right=create(3);
     root->left->left=create(4);
-    traverse(root,3);
+    printf("Preorder traversal of the tree - ");traverse(root,1);printf("\n");
+    printf("Inorder traversal of the tree - ");traverse(root,2);printf("\n");
+    printf("Postorder traversal of the tree - ");traverse(root,3);printf("\n");
     return 0;
 }
