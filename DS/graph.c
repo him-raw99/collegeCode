@@ -1,33 +1,51 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node * next;
+};
+
+
+struct node * insertNode(struct node * head , int data){
+    struct node * newPtr = (struct node *) malloc(sizeof(struct node));
+    newPtr->next = head;
+    newPtr->data=data;
+    return newPtr;
+}
+
+void traverse(struct node * head ){
+    struct node * temp = head;
+    if(temp==NULL) printf("-------------traversing----------\n");
+    while (temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
 
 
 int main(){
     int numberOfNode , numberOfEdges;
     printf("enter the no. of nodes : ");
     scanf("%d",&numberOfNode);
-    int adjecencyMatrix[numberOfNode][numberOfNode];
-    for(int i=0;i<numberOfNode;i++){
-        for(int j=0;j<numberOfNode;j++){
-            adjecencyMatrix[i][j]=0;
-        }
-    }
     printf("nodes going from : 0 - %d \n",numberOfNode-1);
     printf("enter the no. of edges : ");
     scanf("%d",&numberOfEdges);
-    for(int i=0;i<numberOfEdges;i++){
-        int from , to;
-        printf("edge %d goes from :",i+1);
-        scanf("%d",&from);
-        printf("edge %d goes to :",i+1);
-        scanf("%d",&to);
-        adjecencyMatrix[from][to]=1;
-        adjecencyMatrix[to][from]=1;
-    }
+    struct node * adjList[numberOfNode];
 
     for(int i=0;i<numberOfNode;i++){
-        for(int j=0;j<numberOfNode;j++){
-            printf("%d",adjecencyMatrix[i][j]);
-        }
-        printf("\n");
+        adjList[i]=NULL;
+    }
+
+    for(int i=0;i<numberOfEdges;i++){
+        int from, to;
+        printf("edge between : ");
+        scanf("%d %d",&from,&to);
+        adjList[to]=insertNode(adjList[to],from);
+        adjList[from]=insertNode(adjList[from],to);
+    }
+    for(int i=0;i<numberOfNode;i++){
+        printf("%d-->",i);traverse(adjList[i]);
     }
 }
