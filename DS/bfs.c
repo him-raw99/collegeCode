@@ -8,6 +8,8 @@ struct node{
 
 struct node * queue = NULL;
 
+
+//for queue
 void push(int val){
     struct node * Node = (struct node *) malloc(sizeof(struct node));
     struct node * temp = queue;
@@ -31,8 +33,19 @@ void pop(){
     free(temp);
 }
 
+
+//for adjList
+struct node * insertNode(struct node * head , int data){
+    struct node * newPtr = (struct node *) malloc(sizeof(struct node));
+    newPtr->next = head;
+    newPtr->data=data;
+    return newPtr;
+}
+
+
 void traverse(struct node * head ){
     struct node * temp = head;
+    if(temp==NULL) printf("-------------traversing----------\n");
     while (temp!=NULL){
         printf("%d ",temp->data);
         temp=temp->next;
@@ -40,7 +53,7 @@ void traverse(struct node * head ){
     printf("\n");
 }
 
-void bfs(int current,int matrix[][],int visited[],int n){
+void bfs(int current , struct node * adjlist[] , int visited[], int size){
 
 }
 
@@ -51,22 +64,23 @@ int main(){
     printf("nodes going from : 0 - %d \n",numberOfNode-1);
     printf("enter the no. of edges : ");
     scanf("%d",&numberOfEdges);
-    
-    int matrix[numberOfNode][numberOfNode],visited[numberOfNode];
-
+    struct node * adjList[numberOfNode];
+    int visited[numberOfNode];
     for(int i=0;i<numberOfNode;i++){
+        adjList[i]=NULL;
         visited[i]=0;
-        for(int j=0;j<numberOfNode;j++){
-            matrix[i][j]=0;
-        }
     }
 
     for(int i=0;i<numberOfEdges;i++){
         int from, to;
         printf("edge between : ");
         scanf("%d %d",&from,&to);
-        matrix[to][from]=1;
-        matrix[from][to]=1;
+        adjList[to]=insertNode(adjList[to],from);
+        adjList[from]=insertNode(adjList[from],to);
+    }
+
+    for(int i=0;i<numberOfNode;i++){
+        printf("%d-->",i);traverse(adjList[i]);
     }
 }
 
