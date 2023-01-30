@@ -53,8 +53,22 @@ void traverse(struct node * head ){
     printf("\n");
 }
 
-void bfs(int current , struct node * adjlist[] , int visited[], int size){
-
+void bfs(int start , struct node * adjlist[] , int visited[], int size){
+    push(start);
+    visited[start]=1;
+    while (queue!=NULL){
+        int current = queue->data;
+        printf("%d ",current);
+        pop();
+        struct node * temp= adjlist[current];
+        while (temp!=NULL){
+            if(visited[temp->data]==0){
+                push(temp->data);
+                visited[temp->data]=1;
+            }
+            temp=temp->next;
+        }
+    }
 }
 
 int main(){
@@ -82,5 +96,7 @@ int main(){
     for(int i=0;i<numberOfNode;i++){
         printf("%d-->",i);traverse(adjList[i]);
     }
+
+    bfs(0,adjList,visited,numberOfNode);
 }
 
