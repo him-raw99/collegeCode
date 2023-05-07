@@ -77,6 +77,5 @@ public class Q8A {
         q.Enqueue(3);q.Enqueue(4);
         q.Display();q.Dequeue();
         q.Dequeue();q.Display();
-        System.out.println("Lakshman IT-B-91");
     }
 }
